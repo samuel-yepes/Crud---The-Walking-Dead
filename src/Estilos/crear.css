@@ -1,336 +1,264 @@
-/* Import futuristic font */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Rajdhani:wght@400;500;600&display=swap');
-
-:root {
+/* Cyberpunk Form Styles */
+.cyber-form-container {
+  font-family: 'Rajdhani', 'Segoe UI', sans-serif;
   --primary: #00f7ff;
   --secondary: #ff00aa;
   --dark-bg: #0a0a15;
   --darker-bg: #050510;
-  --input-bg: rgba(20, 20, 40, 0.7);
+  --form-bg: rgba(20, 20, 40, 0.8);
   --text-light: #e0e0ff;
   --text-lighter: #ffffff;
-}
-
-/* Base styles */
-.cyber-form-container {
-  font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+  --input-bg: rgba(10, 10, 25, 0.7);
+  padding: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: var(--darker-bg);
-  background-image: 
-    radial-gradient(circle at 20% 30%, rgba(0, 247, 255, 0.05) 0%, transparent 20%),
-    radial-gradient(circle at 80% 70%, rgba(255, 0, 170, 0.05) 0%, transparent 20%);
-  padding: 2rem;
+  background: linear-gradient(135deg, var(--dark-bg), var(--darker-bg));
 }
 
-.neon-card {
+.cyber-form-card {
   width: 100%;
-  max-width: 500px;
-  background: var(--dark-bg);
+  max-width: 800px;
+  background: var(--form-bg);
   border-radius: 12px;
-  padding: 2.5rem;
-  box-shadow: 
-    0 0 20px rgba(0, 247, 255, 0.1),
-    0 0 40px rgba(255, 0, 170, 0.05);
+  padding: 2rem;
+  box-shadow: 0 0 30px rgba(0, 150, 255, 0.2);
   border: 1px solid rgba(0, 247, 255, 0.1);
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.3s ease;
+  backdrop-filter: blur(10px);
 }
 
-.neon-card:hover {
-  transform: translateY(-5px);
-}
-
-.neon-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 247, 255, 0.03) 0%,
-    rgba(255, 0, 170, 0.03) 100%
-  );
-  pointer-events: none;
-}
-
-/* Header styles */
-.form-header {
-  margin-bottom: 2.5rem;
+.cyber-form-header {
+  margin-bottom: 2rem;
   text-align: center;
 }
 
-.cyber-title {
+.cyber-form-title {
   font-family: 'Orbitron', sans-serif;
-  font-weight: 700;
-  font-size: 2rem;
-  margin: 0;
-  letter-spacing: 2px;
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-}
-
-.title-gradient {
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.title-outline {
-  color: transparent;
-  -webkit-text-stroke: 1px var(--primary);
-  text-stroke: 1px var(--primary);
-}
-
-.header-decoration {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 1rem;
-}
-
-.decoration-line {
-  height: 1px;
-  width: 80px;
-  background: linear-gradient(90deg, transparent, var(--primary), transparent);
-}
-
-.decoration-dot {
-  width: 8px;
-  height: 8px;
-  background-color: var(--secondary);
-  border-radius: 50%;
-  margin: 0 15px;
-  box-shadow: 0 0 10px var(--secondary);
-}
-
-/* Input styles */
-.cyber-input-group {
-  margin-bottom: 1.8rem;
-  position: relative;
-}
-
-.cyber-label {
-  display: flex;
-  align-items: center;
-  margin-bottom: 0.8rem;
-  color: var(--text-light);
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 500;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
-}
-
-.label-icon {
-  margin-right: 10px;
-  font-size: 1.1rem;
   color: var(--primary);
-}
-
-.input-wrapper {
+  font-size: 1.8rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
   position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
 }
 
-.cyber-input {
-  width: 100%;
-  padding: 14px 16px;
-  background: var(--input-bg);
-  border: 1px solid rgba(0, 247, 255, 0.2);
-  color: var(--text-lighter);
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 1rem;
-  font-weight: 500;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(5px);
+.title-icon {
+  margin-right: 10px;
+  filter: drop-shadow(0 0 5px var(--primary));
 }
 
-.cyber-input:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 15px rgba(0, 247, 255, 0.2);
-}
-
-.cyber-input::placeholder {
-  color: #606080;
-  font-weight: 400;
-}
-
-.input-focus-line {
+.title-underline {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 0;
+  width: 100%;
   height: 2px;
   background: linear-gradient(90deg, var(--primary), var(--secondary));
-  transition: width 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  border-radius: 2px;
 }
 
-.cyber-input:focus ~ .input-focus-line {
-  width: 100%;
+.cyber-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-/* Button styles */
-.cyber-button {
-  width: 100%;
-  padding: 16px;
-  background: linear-gradient(135deg, 
-    rgba(0, 247, 255, 0.2), 
-    rgba(255, 0, 170, 0.15));
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 1px;
-  cursor: pointer;
+.form-group {
   position: relative;
-  overflow: hidden;
-  transition: all 0.4s ease;
-  margin-top: 2rem;
-  backdrop-filter: blur(5px);
-  border: 1px solid rgba(0, 247, 255, 0.3);
+  margin-bottom: 1.5rem;
 }
 
-.cyber-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 
-    0 5px 20px rgba(0, 247, 255, 0.3),
-    0 3px 10px rgba(255, 0, 170, 0.2);
+.form-row {
+  display: flex;
+  gap: 4.5rem;
 }
 
-.cyber-button:active {
-  transform: translateY(0);
+.form-row .form-group {
+  flex: 1;
 }
 
-.button-hologram {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 247, 255, 0.1) 0%,
-    rgba(255, 0, 170, 0.1) 100%
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.cyber-button:hover .button-hologram {
-  opacity: 1;
-}
-
-.button-content {
-  position: relative;
-  z-index: 2;
+.form-label {
   display: flex;
   align-items: center;
+  color: var(--text-light);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+}
+
+.label-icon {
+  margin-right: 8px;
+  font-size: 1rem;
+}
+
+.form-input, .form-textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background: var(--input-bg);
+  border: 1px solid rgba(0, 247, 255, 0.2);
+  border-radius: 6px;
+  color: var(--text-lighter);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus, .form-textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(0, 247, 255, 0.2);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.input-underline {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.form-input:focus ~ .input-underline,
+.form-textarea:focus ~ .input-underline {
+  width: 100%;
+}
+
+/* Checkbox Styles */
+.checkbox-group {
+  margin: 1.5rem 0;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: var(--text-light);
+}
+
+.checkbox-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkbox-custom {
+  position: relative;
+  height: 20px;
+  width: 20px;
+  background-color: var(--input-bg);
+  border: 2px solid var(--primary);
+  border-radius: 4px;
+  margin-right: 10px;
+  transition: all 0.3s ease;
+}
+
+.checkbox-input:checked ~ .checkbox-custom {
+  background-color: var(--primary);
+}
+
+.checkbox-custom:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid var(--darker-bg);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox-input:checked ~ .checkbox-custom:after {
+  display: block;
+}
+
+.checkbox-text {
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* Button Styles */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.cyber-button {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  gap: 10px;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.save-button {
+  background: rgba(0, 247, 255, 0.1);
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+.save-button:hover {
+  background: rgba(0, 247, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 247, 255, 0.2);
+}
+
+.cancel-button {
+  background: rgba(255, 0, 170, 0.1);
+  color: var(--secondary);
+  border: 1px solid var(--secondary);
+}
+
+.cancel-button:hover {
+  background: rgba(255, 0, 170, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 0, 170, 0.2);
 }
 
 .button-icon {
-  font-size: 1.2rem;
-  color: var(--primary);
+  margin-right: 8px;
+  font-size: 1rem;
 }
 
-.button-particles {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.particle {
-  position: absolute;
-  background-color: var(--primary);
-  border-radius: 50%;
-  opacity: 0;
-}
-
-.cyber-button:hover .particle:nth-child(1) {
-  width: 4px;
-  height: 4px;
-  top: 20%;
-  left: 15%;
-  animation: particle-float 3s infinite ease-in-out;
-}
-
-.cyber-button:hover .particle:nth-child(2) {
-  width: 3px;
-  height: 3px;
-  top: 60%;
-  left: 25%;
-  animation: particle-float 3.5s infinite 0.5s ease-in-out;
-}
-
-.cyber-button:hover .particle:nth-child(3) {
-  width: 2px;
-  height: 2px;
-  top: 30%;
-  left: 80%;
-  animation: particle-float 4s infinite 1s ease-in-out;
-}
-
-@keyframes particle-float {
-  0% { transform: translateY(0) translateX(0); opacity: 0; }
-  20% { opacity: 0.7; }
-  100% { transform: translateY(-50px) translateX(20px); opacity: 0; }
-}
-
-/* Footer styles */
-.form-footer {
-  display: flex;
-  align-items: center;
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(0, 247, 255, 0.1);
-}
-
-.status-light {
-  width: 10px;
-  height: 10px;
-  background-color: #00ff55;
-  border-radius: 50%;
-  margin-right: 10px;
-  box-shadow: 0 0 10px #00ff55;
-  animation: status-pulse 2s infinite;
-}
-
-.status-text {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 0.8rem;
-  color: rgba(0, 247, 255, 0.7);
-  letter-spacing: 1px;
-}
-
-@keyframes status-pulse {
-  0% { opacity: 0.7; }
-  50% { opacity: 1; }
-  100% { opacity: 0.7; }
-}
-
-/* Responsive adjustments */
-@media (max-width: 600px) {
-  .neon-card {
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .cyber-form-card {
     padding: 1.5rem;
   }
   
-  .cyber-title {
-    font-size: 1.5rem;
+  .form-row {
     flex-direction: column;
-    gap: 5px;
+    gap: 1rem;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .cyber-button {
+    width: 100%;
   }
 }

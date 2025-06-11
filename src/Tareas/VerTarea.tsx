@@ -1,0 +1,91 @@
+import React, { useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { Tarea } from '../Interfaces/Tarea';
+import { obtenerTareaPorId } from '../Servicios/TareaService';
+import '../Estilos/ver.css'
+
+const VerTarea: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const [tarea, setTarea] = useState<Tarea | null>(null);
+
+  useEffect(() => {
+    const cargarTarea = async () => {
+      if (id) {
+        const tareaData = await obtenerTareaPorId(id);
+        setTarea(tareaData);
+      }
+    };
+    cargarTarea();
+  }, [id]);
+
+  if (!tarea) return <div>Cargando...</div>;
+
+  return (
+   <div className="cyber-detail-container">
+  <div className="cyber-detail-header">
+    <h1 className="cyber-detail-title">
+      <span className="title-glow">DETALLES DE TAREA</span>
+      <span className="title-underline-animated"></span>
+    </h1>
+  </div>
+
+  <div className="cyber-detail-card">
+    <div className="cyber-card-body">
+      <div className="cyber-detail-section">
+        <h2 className="cyber-item-title">{tarea.nombre}</h2>
+        <div className="cyber-divider"></div>
+      </div>
+
+      <div className="cyber-detail-section">
+        <h3 className="cyber-section-title">
+          <span className="section-icon">📄</span>
+          DESCRIPCIÓN
+        </h3>
+        <p className="cyber-description">{tarea.descripcion || 'Sin descripción'}</p>
+      </div>
+
+      <div className="cyber-detail-grid">
+        <div className="cyber-detail-item">
+          <h3 className="cyber-section-title">
+            <span className="section-icon">📊</span>
+            ESTADO
+          </h3>
+          <span className={`cyber-status ${tarea.completado ? 'completed' : 'pending'}`}>
+            {tarea.completado ? 'COMPLETADA' : 'PENDIENTE'}
+          </span>
+        </div>
+
+        <div className="cyber-detail-item">
+          <h3 className="cyber-section-title">
+            <span className="section-icon">⏱️</span>
+            FECHA INICIO
+          </h3>
+          <p className="cyber-date">{new Date(tarea.fechaInicio).toLocaleDateString()}</p>
+        </div>
+
+        <div className="cyber-detail-item">
+          <h3 className="cyber-section-title">
+            <span className="section-icon">⏳</span>
+            FECHA FIN
+          </h3>
+          <p className="cyber-date">{tarea.fechaFin ? new Date(tarea.fechaFin).toLocaleDateString() : 'No especificada'}</p>
+        </div>
+      </div>
+
+      <div className="cyber-actions">
+        <Link to={`/editar/${tarea.id}`} className="cyber-button edit-btn">
+          <span className="btn-icon">✏️</span>
+          EDITAR TAREA
+        </Link>
+        <Link to="/" className="cyber-button back-btn">
+          <span className="btn-icon">↩️</span>
+          VOLVER AL LISTADO
+        </Link>
+      </div>
+    </div>
+  </div>
+</div>
+  );
+};
+
+export default VerTarea;
