@@ -1,0 +1,117 @@
+/* Cyberpunk Navbar Styles */
+.cyber-container {
+  font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+  --primary: #00f7ff;
+  --secondary: #ff00aa;
+  --dark-bg: #0a0a15;
+  --text-light: #e0e0ff;
+  --darker-bg: #050510;
+  background-color: var(--darker-bg);
+}
+
+.cyber-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(10, 10, 21, 0.8);
+  padding: 1rem 2rem;
+  position: relative;
+  border-bottom: 1px solid rgba(0, 247, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.nav-glows {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(0, 247, 255, 0.05) 0%, transparent 30%),
+    radial-gradient(circle at 80% 50%, rgba(255, 0, 170, 0.05) 0%, transparent 30%);
+  pointer-events: none;
+}
+
+.nav-link {
+  position: relative;
+  color: var(--text-light);
+  text-decoration: none;
+  padding: 0.8rem 1.5rem;
+  margin: 0 0.5rem;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 500;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.link-icon {
+  margin-right: 10px;
+  font-size: 1.1rem;
+  color: var(--primary);
+  transition: all 0.3s ease;
+}
+
+.link-text {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.link-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, 
+    rgba(0, 247, 255, 0.1), 
+    rgba(255, 0, 170, 0.05));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.nav-link:hover {
+  color: white;
+  text-shadow: 0 0 8px rgba(0, 247, 255, 0.5);
+}
+
+.nav-link:hover .link-icon {
+  transform: scale(1.2);
+  color: var(--secondary);
+}
+
+.nav-link:hover .link-hover {
+  opacity: 1;
+}
+
+/* Active link indicator */
+.nav-indicator {
+  position: absolute;
+  bottom: -1px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .cyber-nav {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  
+  .nav-link {
+    width: 100%;
+    justify-content: center;
+    margin: 0.3rem 0;
+  }
+  
+  .nav-indicator {
+    display: none;
+  }
+}
