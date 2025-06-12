@@ -2,7 +2,7 @@ export interface Tarea {
   id: string;
   nombre: string;
   descripcion: string;
-  completado: boolean;
+  completado: false;
   fechaInicio: string; 
   fechaFinal: string;  
 }

@@ -4,6 +4,7 @@ import { NuevaTarea } from '../Interfaces/Tarea';
 import { crearTarea } from '../Servicios/TareaService';
 import '../Estilos/crear.css'
 import Toast from '../Alert/ShowAlertConfigt';
+import { BadgePlus, CalendarDays, CircleX, FolderPen, Notebook, SaveAll } from 'lucide-react';
 
 const CrearTarea: React.FC = () => {
   const navigate = useNavigate();
@@ -18,6 +19,8 @@ const CrearTarea: React.FC = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target as HTMLInputElement;
+    if(name === 'completado') return;
+
     const val = type === 'checkbox' ? (e.target as HTMLInputElement).checked : value;
     setTarea({ ...tarea, [name]: val });
   };
@@ -60,7 +63,9 @@ const CrearTarea: React.FC = () => {
       <div className="cyber-form-card">
         <div className="cyber-form-header">
           <h1 className="cyber-form-title">
-            <span className="title-icon">✚</span>
+            <span className="title-icon">
+              <BadgePlus />
+            </span>
             NUEVA TAREA
             <div className="title-underline"></div>
           </h1>
@@ -69,7 +74,9 @@ const CrearTarea: React.FC = () => {
         <form onSubmit={handleSubmit} className="cyber-form">
           <div className="form-group">
             <label className="form-label">
-              <span className="label-icon">📛</span>
+              <span className="label-icon">
+                <FolderPen />
+              </span>
               NOMBRE
             </label>
             <input
@@ -84,7 +91,9 @@ const CrearTarea: React.FC = () => {
 
           <div className="form-group">
             <label className="form-label">
-              <span className="label-icon">📝</span>
+              <span className="label-icon">
+                <Notebook />
+              </span>
               DESCRIPCIÓN
             </label>
             <textarea
@@ -97,24 +106,12 @@ const CrearTarea: React.FC = () => {
             <div className="input-underline"></div>
           </div>
 
-          <div className="form-group checkbox-group">
-            <label className="checkbox-label">
-              <input
-                type="checkbox"
-                className="checkbox-input"
-                name="completado"
-                checked={tarea.completado}
-                onChange={handleChange}
-              />
-              <span className="checkbox-custom"></span>
-              <span className="checkbox-text">COMPLETADO</span>
-            </label>
-          </div>
-
           <div className="form-row">
             <div className="form-group">
               <label className="form-label">
-                <span className="label-icon">⏱️</span>
+                <span className="label-icon">
+                  <CalendarDays />
+                </span>
                 FECHA INICIO
               </label>
               <input
@@ -129,7 +126,9 @@ const CrearTarea: React.FC = () => {
 
             <div className="form-group">
               <label className="form-label">
-                <span className="label-icon">⏳</span>
+                <span className="label-icon">
+                  <CalendarDays />
+                </span>
                 FECHA FIN
               </label>
               <input
@@ -145,7 +144,9 @@ const CrearTarea: React.FC = () => {
 
           <div className="form-actions">
             <button type="submit" className="cyber-button save-button">
-              <span className="button-icon">💾</span>
+              <span className="button-icon">
+                <SaveAll />
+              </span>
               GUARDAR
             </button>
             <button
@@ -153,7 +154,9 @@ const CrearTarea: React.FC = () => {
               className="cyber-button cancel-button"
               onClick={() => navigate('/')}
             >
-              <span className="button-icon">✖</span>
+              <span className="button-icon">
+                <CircleX />
+              </span>
               CANCELAR
             </button>
           </div>

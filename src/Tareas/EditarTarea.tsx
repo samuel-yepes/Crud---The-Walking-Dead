@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Tarea, TareaActualizada } from '../Interfaces/Tarea';
 import { obtenerTareaPorId, actualizarTarea } from '../Servicios/TareaService';
 import Toast from '../Alert/ShowAlertConfigt';
+import { BadgePlus, CalendarDays, CircleX, FolderPen, Notebook, SaveAll } from 'lucide-react';
 
 const EditarTarea: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -49,7 +50,9 @@ const EditarTarea: React.FC = () => {
       <div className="cyber-form-card">
         <div className="cyber-form-header">
           <h1 className="cyber-form-title">
-            <span className="title-icon">✚</span>
+            <span className="title-icon">
+              <BadgePlus />
+            </span>
             NUEVA TAREA
             <div className="title-underline"></div>
           </h1>
@@ -58,7 +61,9 @@ const EditarTarea: React.FC = () => {
         <form onSubmit={handleSubmit} className="cyber-form">
           <div className="form-group">
             <label className="form-label">
-              <span className="label-icon">📛</span>
+              <span className="label-icon">
+                <FolderPen />
+              </span>
               NOMBRE
             </label>
             <input
@@ -67,14 +72,15 @@ const EditarTarea: React.FC = () => {
               name="nombre"
               value={tarea.nombre}
               onChange={handleChange}
-              required
             />
             <div className="input-underline"></div>
           </div>
 
           <div className="form-group">
             <label className="form-label">
-              <span className="label-icon">📝</span>
+              <span className="label-icon">
+                <Notebook />
+              </span>
               DESCRIPCIÓN
             </label>
             <textarea
@@ -104,7 +110,9 @@ const EditarTarea: React.FC = () => {
           <div className="form-row">
             <div className="form-group">
               <label className="form-label">
-                <span className="label-icon">⏱️</span>
+                <span className="label-icon">
+                  <CalendarDays />
+                </span>
                 FECHA INICIO
               </label>
               <input
@@ -119,7 +127,9 @@ const EditarTarea: React.FC = () => {
 
             <div className="form-group">
               <label className="form-label">
-                <span className="label-icon">⏳</span>
+                <span className="label-icon">
+                  <CalendarDays />
+                </span>
                 FECHA FIN
               </label>
               <input
@@ -135,7 +145,9 @@ const EditarTarea: React.FC = () => {
 
           <div className="form-actions">
             <button type="submit" className="cyber-button save-button">
-              <span className="button-icon">💾</span>
+              <span className="button-icon">
+                <SaveAll />
+              </span>
               GUARDAR
             </button>
             <button
@@ -143,7 +155,9 @@ const EditarTarea: React.FC = () => {
               className="cyber-button cancel-button"
               onClick={() => navigate('/')}
             >
-              <span className="button-icon">✖</span>
+              <span className="button-icon">
+                <CircleX />
+              </span>
               CANCELAR
             </button>
           </div>
