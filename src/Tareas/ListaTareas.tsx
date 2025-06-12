@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Tarea } from '../Interfaces/Tarea';
 import { obtenerTareas, eliminarTarea } from '../Servicios/TareaService';
 import '../Estilos/Listar.css'
+import Toast from '../Alert/ShowAlertConfigt';
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet"></link>
 
 const ListaTareas: React.FC = () => {
@@ -18,6 +19,12 @@ const ListaTareas: React.FC = () => {
 
   const handleEliminar = async (id: string) => {
     await eliminarTarea(id);
+    await Toast.fire({
+        icon: 'warning',
+        title: '¡Tarea eliminada!',
+        text: 'La tarea se ha eliminado correctamente',
+        timer: 3000
+      });
     setTareas(tareas.filter(t => t.id !== id));
   };
 

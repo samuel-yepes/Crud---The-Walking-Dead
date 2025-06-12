@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { NuevaTarea } from '../Interfaces/Tarea';
 import { crearTarea } from '../Servicios/TareaService';
 import '../Estilos/crear.css'
+import Toast from '../Alert/ShowAlertConfigt';
 
 const CrearTarea: React.FC = () => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const CrearTarea: React.FC = () => {
     fechaInicio: new Date().toISOString().split('T')[0],
     fechaFinal: new Date().toISOString().split('T')[0],
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target as HTMLInputElement;
@@ -22,15 +24,34 @@ const CrearTarea: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Estado actual de tarea:', tarea);
-    console.log('fechafin específicamente:', tarea.fechaFinal);
+    setIsSubmitting(true);
 
+    if (!tarea.nombre.trim() || !tarea.descripcion.trim()) {
+      await Toast.fire({
+        icon: 'error',
+        title: 'Campos requeridos',
+        text: 'Debes ingresar llenar todos los campos para la tarea'
+      });
+      setIsSubmitting(false);
+      return;
+    }
     try {
       const resultado = await crearTarea(tarea);
       console.log('Respuesta del servidor:', resultado);
+
+      await Toast.fire({
+        icon: 'success',
+        title: '¡Tarea creada!',
+        text: 'La tarea se ha creado correctamente',
+        timer: 3000
+      });
       navigate('/');
     } catch (error) {
-      console.error('Error al crear tarea:', error);
+      await Toast.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'No se pudo crear la tarea',
+      });
     }
   };
 
@@ -57,7 +78,6 @@ const CrearTarea: React.FC = () => {
               name="nombre"
               value={tarea.nombre}
               onChange={handleChange}
-              required
             />
             <div className="input-underline"></div>
           </div>

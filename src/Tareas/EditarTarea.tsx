@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Tarea, TareaActualizada } from '../Interfaces/Tarea';
 import { obtenerTareaPorId, actualizarTarea } from '../Servicios/TareaService';
+import Toast from '../Alert/ShowAlertConfigt';
 
 const EditarTarea: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -28,8 +29,15 @@ const EditarTarea: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     if (tarea && id) {
       await actualizarTarea(id, tarea);
+      await Toast.fire({
+        icon: 'success',
+        title: '¡Tarea actualizada!',
+        text: 'La tarea se ha actualizado correctamente',
+        timer: 3000
+      });
       navigate('/');
     }
   };
