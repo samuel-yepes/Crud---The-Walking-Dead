@@ -11,6 +11,10 @@ function App() {
     <div className="cyber-container">
       <nav className="cyber-nav">
         <div className="nav-glows"></div>
+        <div className="nav-logo-container" >
+          <img src="logo.png" alt="Logo mio" className="nav-logo"/>
+        </div>
+
         <Link to="/" className="nav-link">
           <span className="link-icon">🖥</span>
           <span className="link-text">Tareas</span>

@@ -8,6 +8,33 @@
   --darker-bg: #050510;
   background-color: var(--darker-bg);
 }
+.cyber-nav {
+  position: relative;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+
+.nav-logo-container {
+  z-index: 10;
+}
+
+.nav-logo {
+  height: 95px;
+  width: auto;
+  filter: drop-shadow(0 0 5px rgba(252, 252, 252, 0.7)); 
+  transition: all 0.3s ease;
+}
+
+.nav-logo:hover {
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.993));
+}
+
+.nav-links-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
 
 .cyber-nav {
   display: flex;
