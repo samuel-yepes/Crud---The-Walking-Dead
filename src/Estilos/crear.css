@@ -18,14 +18,15 @@
 }
 
 .cyber-form-card {
-  width: 100%;
-  max-width: 800px;
+  width: 83%;
+  max-width: 738px;
   background: var(--form-bg);
   border-radius: 12px;
   padding: 2rem;
   box-shadow: 0 0 30px rgba(0, 150, 255, 0.2);
   border: 1px solid rgba(0, 247, 255, 0.1);
   backdrop-filter: blur(10px);
+  max-height: 728px;
 }
 
 .cyber-form-header {
@@ -95,7 +96,7 @@
 }
 
 .form-input, .form-textarea {
-  width: 100%;
+  width: 98%;
   padding: 0.8rem 1rem;
   background: var(--input-bg);
   border: 1px solid rgba(0, 247, 255, 0.2);

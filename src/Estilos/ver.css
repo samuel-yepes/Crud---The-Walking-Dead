@@ -12,7 +12,6 @@
   margin-bottom: 2rem;
   text-align: center;
 }
-
 .cyber-detail-title {
   font-family: 'Orbitron', sans-serif;
   color: #ffffff;
@@ -41,12 +40,13 @@
 /* Secciones */
 .cyber-detail-section {
   margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .cyber-item-title {
   font-family: 'Orbitron', sans-serif;
-  color: #00f7ff;
-  font-size: 1.8rem;
+  color: #ffffff;
   margin-bottom: 0.5rem;
   text-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
 }
@@ -58,7 +58,7 @@
   border-radius: 2px;
 }
 
-.cyber-section-title {
+.cyber-section-title .section-T {
   font-family: 'Rajdhani', sans-serif;
   color: #ffffff;
   font-size: 1.2rem;
