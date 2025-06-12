@@ -11,7 +11,7 @@ const CrearTarea: React.FC = () => {
     descripcion: '',
     completado: false,
     fechaInicio: new Date().toISOString().split('T')[0],
-    fechaFin: ''
+    fechaFinal: new Date().toISOString().split('T')[0],
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -22,8 +22,16 @@ const CrearTarea: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await crearTarea(tarea);
-    navigate('/');
+    console.log('Estado actual de tarea:', tarea);
+    console.log('fechafin específicamente:', tarea.fechaFinal);
+
+    try {
+      const resultado = await crearTarea(tarea);
+      console.log('Respuesta del servidor:', resultado);
+      navigate('/');
+    } catch (error) {
+      console.error('Error al crear tarea:', error);
+    }
   };
 
   return (
@@ -36,93 +44,93 @@ const CrearTarea: React.FC = () => {
             <div className="title-underline"></div>
           </h1>
         </div>
-        
+
         <form onSubmit={handleSubmit} className="cyber-form">
           <div className="form-group">
             <label className="form-label">
               <span className="label-icon">📛</span>
               NOMBRE
             </label>
-            <input 
-              type="text" 
-              className="form-input" 
-              name="nombre" 
-              value={tarea.nombre} 
-              onChange={handleChange} 
-              required 
+            <input
+              type="text"
+              className="form-input"
+              name="nombre"
+              value={tarea.nombre}
+              onChange={handleChange}
+              required
             />
             <div className="input-underline"></div>
           </div>
-          
+
           <div className="form-group">
             <label className="form-label">
               <span className="label-icon">📝</span>
               DESCRIPCIÓN
             </label>
-            <textarea 
-              className="form-textarea" 
-              name="descripcion" 
-              value={tarea.descripcion} 
-              onChange={handleChange} 
+            <textarea
+              className="form-textarea"
+              name="descripcion"
+              value={tarea.descripcion}
+              onChange={handleChange}
               rows={3}
             />
             <div className="input-underline"></div>
           </div>
-          
+
           <div className="form-group checkbox-group">
             <label className="checkbox-label">
-              <input 
-                type="checkbox" 
-                className="checkbox-input" 
-                name="completado" 
-                checked={tarea.completado} 
-                onChange={handleChange} 
+              <input
+                type="checkbox"
+                className="checkbox-input"
+                name="completado"
+                checked={tarea.completado}
+                onChange={handleChange}
               />
               <span className="checkbox-custom"></span>
               <span className="checkbox-text">COMPLETADO</span>
             </label>
           </div>
-          
+
           <div className="form-row">
             <div className="form-group">
               <label className="form-label">
                 <span className="label-icon">⏱️</span>
                 FECHA INICIO
               </label>
-              <input 
-                type="date" 
-                className="form-input" 
-                name="fechaInicio" 
-                value={tarea.fechaInicio} 
-                onChange={handleChange} 
+              <input
+                type="date"
+                className="form-input"
+                name="fechaInicio"
+                value={tarea.fechaInicio}
+                onChange={handleChange}
               />
               <div className="input-underline"></div>
             </div>
-            
+
             <div className="form-group">
               <label className="form-label">
                 <span className="label-icon">⏳</span>
                 FECHA FIN
               </label>
-              <input 
-                type="date" 
-                className="form-input" 
-                name="fechaFin" 
-                value={tarea.fechaFin} 
-                onChange={handleChange} 
+              <input
+                type="date"
+                className="form-input"
+                name="fechaFin"
+                value={tarea.fechaFinal}
+                onChange={handleChange}
               />
               <div className="input-underline"></div>
             </div>
           </div>
-          
+
           <div className="form-actions">
             <button type="submit" className="cyber-button save-button">
               <span className="button-icon">💾</span>
               GUARDAR
             </button>
-            <button 
-              type="button" 
-              className="cyber-button cancel-button" 
+            <button
+              type="button"
+              className="cyber-button cancel-button"
               onClick={() => navigate('/')}
             >
               <span className="button-icon">✖</span>

@@ -118,7 +118,7 @@ const EditarTarea: React.FC = () => {
                 type="date"
                 className="form-input"
                 name="fechaFin"
-                value={tarea.fechaFin}
+                value={tarea.fechaFinal}
                 onChange={handleChange}
               />
               <div className="input-underline"></div>

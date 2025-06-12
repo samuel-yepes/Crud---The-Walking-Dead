@@ -46,9 +46,17 @@ const ListaTareas: React.FC = () => {
                   <span className="header-icon">✅</span>
                   <span>ESTADO</span>
                 </th>
+                <th className="column-status">
+                  <span className="header-icon">📄</span>
+                  <span>DESCRIPCION</span>
+                </th>
                 <th className="column-date">
                   <span className="header-icon">📅</span>
-                  <span>FECHA INICIO</span>
+                  <span>FECHA DE INICIO</span>
+                </th>
+                <th className="column-date">
+                  <span className="header-icon">📅</span>
+                  <span>FECHA DE FIN</span>
                 </th>
                 <th className="column-actions">
                   <span className="header-icon">⚡</span>
@@ -67,8 +75,14 @@ const ListaTareas: React.FC = () => {
                       {tarea.completado ? 'COMPLETADO' : 'PENDIENTE'}
                     </span>
                   </td>
+                  <td className="cell-name">
+                    <span className="text-glow">{tarea.descripcion}</span>
+                  </td>
                   <td className="cell-date">
-                    {new Date(tarea.fechaInicio).toLocaleDateString()}
+                    {tarea.fechaInicio ? new Date(tarea.fechaInicio).toLocaleDateString() : 'FECHA NO ENCONTRADA'}
+                  </td>
+                  <td className="cell-date">
+                    {tarea.fechaFinal ? new Date(tarea.fechaFinal).toLocaleDateString() :'FECHA NO ENCONTRADA'}
                   </td>
                   <td className="cell-actions">
                     <div className="action-buttons">

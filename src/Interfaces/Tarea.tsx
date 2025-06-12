@@ -4,7 +4,7 @@ export interface Tarea {
   descripcion: string;
   completado: boolean;
   fechaInicio: string; 
-  fechaFin: string;  
+  fechaFinal: string;  
 }
 
 export type NuevaTarea = Omit<Tarea, 'id'>;

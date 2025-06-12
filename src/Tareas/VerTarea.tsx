@@ -63,7 +63,7 @@ const VerTarea: React.FC = () => {
                 <span className="section-icon">⏱️</span>
                 FECHA INICIO
               </h3>
-              <p className="cyber-date">{new Date(tarea.fechaInicio).toLocaleDateString()}</p>
+              <p className="cyber-date">{tarea.fechaInicio ? new Date(tarea.fechaInicio).toLocaleDateString() : "FECHA NO ENCONTRADA"}</p>
             </div>
 
             <div className="cyber-detail-item">
@@ -71,7 +71,7 @@ const VerTarea: React.FC = () => {
                 <span className="section-icon">⏳</span>
                 FECHA FIN
               </h3>
-              <p className="cyber-date">{tarea.fechaFin ? new Date(tarea.fechaFin).toLocaleDateString() : 'No especificada'}</p>
+              <p className="cyber-date">{tarea.fechaFinal ? new Date(tarea.fechaFinal).toLocaleDateString() : "FECHA NO ENCONTRADA"}</p>
             </div>
           </div>
 
